@@ -1,0 +1,79 @@
+.interactive-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 30;
+  pointer-events: auto;
+}
+
+/* Базовая кнопка-точка */
+.point-btn {
+  position: relative;
+  isolation: isolate; /* создаём собственный стек */
+  width: calc((134 / 1920) * 100vw);
+  height: calc((134 / 1920) * 100vw);
+  border-radius: 50%;
+  border: none;
+  background: transparent; /* фон рисуем псевдоэлементом */
+  color: #000;
+  font-size: calc((60 / 1920) * 100vw);
+  font-weight: 400;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+/* Тень: позади кнопки, сдвинута вниз на 12px */
+.point-btn::before {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: calc((12 / 1920) * 100vw);
+  width: calc((134 / 1920) * 100vw);
+  height: calc((134 / 1920) * 100vw);
+  background: #000;
+  border-radius: 50%;
+  z-index: 0; /* ниже жёлтого круга */
+}
+
+/* Жёлтый круг: основной вид кнопки */
+.point-btn::after {
+  position: absolute;
+  content: '';
+  left: 0;
+  top: 0;
+  width: calc((134 / 1920) * 100vw);
+  height: calc((134 / 1920) * 100vw);
+  background: #FFDF59;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+/* Текст поверх всего */
+.point-btn__text {
+  position: relative;
+  z-index: 2;
+}
+ 
+/* Вариант внешнего вида для второй кнопки */
+
+.point-btn.variant-2 {
+  width: calc((146 / 1920) * 100vw);
+  height: calc((135 / 1920) * 100vw);
+}
+
+.point-btn.variant-2::before {
+  display: none;
+}
+
+.point-btn.variant-2::after {
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-sizing: border-box;
+  background: url('../../../public/images/srar-btn.svg') no-repeat center / cover;
+}

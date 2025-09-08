@@ -1,0 +1,32 @@
+.game-board {
+  position: relative;
+  width: 100%;
+  
+  /* Центрирование на больших экранах */
+  margin: 0 auto;
+}
+
+/* Z-index слои */
+.background-layer {
+  z-index: 0;
+}
+
+.middleground-layer {
+  z-index: 10;
+}
+
+.foreground-layer {
+  z-index: 20;
+}
+
+.interactive-layer {
+  z-index: 30;
+}
+
+.ui-layer {
+  z-index: 40;
+}
+
+.modal-system {
+  z-index: 100;
+}

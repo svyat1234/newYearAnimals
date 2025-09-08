@@ -1,0 +1,21 @@
+{
+  "name": "New Year Trail",
+  "short_name": "NY Trail",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#FFDF59",
+  "description": "Праздничный лендинг-«настолка» с интерактивными советами и тестами.",
+  "icons": [
+    {
+      "src": "/images/logo.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
+
+
+
