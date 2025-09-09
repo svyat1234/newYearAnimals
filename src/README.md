@@ -51,6 +51,7 @@ export const sprites = [
 
 - Рендер в `MiddlegroundLayer.jsx`:
 
+{% raw %}
 ```jsx
 {sprites.map(item => (
  <div className="middleground-layer">
@@ -73,6 +74,7 @@ export const sprites = [
     </div>
 ))}
 ```
+{% endraw %}
 
 ## Именование
 
