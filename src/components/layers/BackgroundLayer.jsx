@@ -1,12 +1,11 @@
-import React from 'react';
-import './BackgroundLayer.css';
+import React from 'react'
+import './BackgroundLayer.css'
+import bg from '../../assets/images/background.svg'
 
-const BackgroundLayer = () => {
-  return (
-    <div className="background-layer">
-      <img src="/background.svg" alt="Background" className="background-image" />
-    </div>
-  );
-};
+const BackgroundLayer = () => (
+  <div className="background-layer">
+    <img src={bg} alt="Background" className="background-image" />
+  </div>
+)
 
-export default BackgroundLayer;
+export default BackgroundLayer

@@ -2,8 +2,6 @@ import React from 'react';
 import './InteractiveLayer.css';
 import { gameConfig } from '../../data/gameConfig';
 
-const vw = (px) => `calc(${px / 1920 * 100}vw)`;
-
 const InteractiveLayer = () => {
   return (
     <div className="interactive-layer">
@@ -14,9 +12,9 @@ const InteractiveLayer = () => {
           className={`point-btn ${p.variant || 'default'} ${p.id === 2 ? 'variant-2' : ''}`}
           style={{
             position: 'absolute',
-            top: vw(p.top),
-            ...(p.left != null && { left: vw(p.left) }),
-            ...(p.right != null && { right: vw(p.right) })
+            top: `calc(${p.top / 1920 * 100}vw)`,
+            ...(p.left != null && { left: `calc(${p.left / 1920 * 100}%)` }),
+            ...(p.right != null && { right: `calc(${p.right / 1920 * 100}%)` })
           }}
           aria-label={`Открыть тест ${p.id}`}
         >

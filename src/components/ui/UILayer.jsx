@@ -15,14 +15,17 @@ const UILayer = () => {
 
       {/* Promo */}
       <section className="promo container">
-        <h1 className="promo__title">Праздники без опасности: забота о питомцах</h1>
+        <h1 className="promo__title">Праздники без&nbsp;опасности: забота о питомцах</h1>
         <p className="promo__text">Полезные советы о том, как уберечь животных от праздничных опасностей и сделать праздник комфортным для всех</p>
         <div className="promo__btns">
-          <button className="promo__btn">Читать статью</button>
-          <button className="promo__btn">Пройти тест</button>
+          <button className="action-button">Читать статью</button>
+          <button className="action-button">Пройти тест</button>
         </div>
 
-
+        <div className="promo__clue">
+          <span className="promo__clue-text">Нажимай на кружочки с цифрами, отвечай на вопросы</span>
+        </div>
+        
       </section>
     </div>
   );
