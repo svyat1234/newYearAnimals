@@ -15,9 +15,8 @@ const MiddlegroundLayer = () => {
           style={{
             position: 'absolute',
             top: `calc(${item.top / 1920 * 100}vw)`,
-            ...(item.left != null && { left: `calc(${item.left / 1920 * 100}vw)` }),
-            ...(item.right != null && { right: `calc(${item.right / 1920 * 100}vw)` }),
-            ...(item.width != null && { width: `calc(${item.width / 1920 * 100}vw)`, height: 'auto' }),
+            ...(item.left != null && { left: `calc(${item.left / 1920 * 100}%)` }),
+            ...(item.width != null && { width: `calc(${item.width / 1920 * 100}%)`, height: 'auto' }),
             zIndex: item.z ?? 1
           }}
         />
