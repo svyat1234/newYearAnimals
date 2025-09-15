@@ -25,6 +25,10 @@
 }
 
 .action-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
   width: calc((260 / 1920) * 100vw);
   height: calc((80 / 1920) * 100vw);
   background-color: #FFDF59;
@@ -43,6 +47,32 @@
   border: 3px solid #FFDF59;
 }
 
+.link {
+  position: relative;
+  font-size: calc((24 / 1920) * 100vw);
+  font-weight: 600;
+  line-height: 110%;
+  text-decoration: none;
+  color: #000;
+  border: none;
+  cursor: pointer;
+}
+
+.link::after {
+  position: absolute;
+  content: '';
+  width: 100%;
+  height: calc((3 / 1920) * 100vw);
+  bottom: calc((-6 / 1920) * 100vw);
+  left: 0;
+  background-color: #FFDF59;
+  z-index: 0;
+}
+
+.link:hover::after {
+  bottom: calc((-8 / 1920) * 100vw);
+}
+
 .header {
   margin-top: calc((38 / 1920) * 100vw);
   position: absolute;
@@ -54,23 +84,6 @@
   align-items: flex-start;
 }
 
-.header__btn {
-  margin-top: calc((10 / 1920) * 100vw);
-  font-size: calc((24 / 1920) * 100vw);
-  font-weight: 600;
-  line-height: 110%;
-  text-decoration: none;
-  color: #000;
-  border: none;
-  padding-bottom: calc((8 / 1920) * 100vw);
-  border-bottom: 3px solid #FFDF59;
-  cursor: pointer;
-}
-
-.header__btn:hover {
-  padding-bottom: calc((10 / 1920) * 100vw);
-}
-
 .header__logo {
   width: calc((200 / 1920) * 100vw);
 }
@@ -78,6 +91,10 @@
 .header__logo img {
   width: 100%;
   height: auto;
+}
+
+.header__btn {
+  margin-top: calc((10 / 1920) * 100vw);
 }
 
 .promo {
@@ -149,3 +166,131 @@
   font-weight: 400;
 }
 
+.footer {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: url(../../assets/images/footer-bg.svg) no-repeat center / cover;
+  padding-top: calc((153 / 1920) * 100vw);
+  padding-bottom: calc((50 / 1920) * 100vw);
+}
+
+.footer__title {
+  font-size: calc((28 / 1920) * 100vw);
+  font-weight: 600;
+  line-height: 110%;
+}
+
+.footer__text {
+  display: flex;
+  margin-top: calc((16 / 1920) * 100vw);
+  font-size: calc((20 / 1920) * 100vw);
+  line-height: 100%;
+  font-weight: 400;
+  max-width: calc((592 / 1920) * 100vw);
+}
+
+.footer__content {
+  margin-top: calc((30 / 1920) * 100vw);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.footer__copyright-nav {
+  display: flex;
+  align-items: center;
+  gap: calc((70 / 1920) * 100vw);
+}
+
+.footer__copyright-text {
+  font-size: calc((20 / 1920) * 100vw);
+  line-height: 110%;
+  font-weight: 400;
+}
+
+.footer__nav {
+  display: flex;
+  align-items: center;
+  gap: calc((50 / 1920) * 100vw);
+}
+
+.footer__nav-link-block {
+  display: flex;
+  align-items: center;
+  gap: calc((10 / 1920) * 100vw);
+}
+
+.footer__nav-title {
+  font-size: calc((20 / 1920) * 100vw);
+  line-height: 110%;
+  font-weight: 400;
+}
+
+.footer__links {
+  display: flex;
+  align-items: center;
+  gap: calc((30 / 1920) * 100vw);
+  padding-right: calc((210 / 1920) * 100vw);
+}
+
+.footer__nav-link {
+  font-size: calc((20 / 1920) * 100vw);
+}
+
+.footer__socials {
+  display: flex;
+  gap: calc((10 / 1920) * 100vw);
+}
+
+.footer__social-link {
+  width: calc((80 / 1920) * 100vw);
+  height: calc((80 / 1920) * 100vw);
+  border-radius: 50%;
+  background: #FFDF59;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.footer__social-link:nth-child(1) img {
+  width: calc((29 / 1920) * 100vw);
+  height: auto;
+}
+
+.footer__social-link:nth-child(2) img {
+  width: calc((34 / 1920) * 100vw);
+  height: auto;
+}
+
+.footer__social-link:hover {
+  background: #fff;
+  border: 3px solid #FFDF59;
+}
+
+.score {
+  position: fixed;
+  bottom: calc((50 / 1920) * 100vw);
+  right: calc((50 / 1920) * 100vw);
+  width: calc((140 / 1920) * 100vw);
+  height: calc((80 / 1920) * 100vw);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc((18.3 / 1920) * 100vw);
+  z-index: 100;
+  border: calc((4 / 1920) * 100vw) solid #FFDF59;
+  border-radius: calc((81 / 1920) * 100vw);
+  background: #fff;
+}
+
+.score__star {
+  width: calc((50.67 / 1920) * 100vw);
+  height: calc((48 / 1920) * 100vw);
+  background: url(../../assets/images/star-score.svg) no-repeat center / cover;
+}
+
+.score__text {
+  font-size: calc((24 / 1920) * 100vw);
+  font-family: 'Rostov', sans-serif;
+}

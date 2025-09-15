@@ -14,7 +14,7 @@ const MiddlegroundLayer = () => {
           imgProps={{ className: `sprite ${item.cls || ''}` }}
           style={{
             position: 'absolute',
-            top: `calc(${item.top / 1920 * 100}vw)`,
+            top: `calc(${item.top / 5541 * 100}%)`,
             ...(item.left != null && { left: `calc(${item.left / 1920 * 100}%)` }),
             ...(item.width != null && { width: `calc(${item.width / 1920 * 100}%)`, height: 'auto' }),
             zIndex: item.z ?? 1

@@ -18,6 +18,7 @@
   border: none;
   background: transparent; /* фон рисуем псевдоэлементом */
   color: #000;
+  font-family: 'Rostov';
   font-size: calc((60 / 1920) * 100vw);
   font-weight: 400;
   line-height: 1;
