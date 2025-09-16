@@ -76,7 +76,7 @@
   height: 100%;
   border-radius: 0;
   box-sizing: border-box;
-  background: url('../../../public/images/srar-btn.svg') no-repeat center / cover;
+  background: url('../../assets/images/star-btn.svg') no-repeat center / cover;
 }
 
 

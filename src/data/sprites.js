@@ -98,7 +98,7 @@ export const sprites = [
     top: 1841,
     left: 156,
     width: 256,
-    z: 10,
+    z: 11,
     mobile: { top: 1026, left: 14, width: 101 }
   },
 
@@ -107,7 +107,7 @@ export const sprites = [
     top: 1872,
     left: 747,
     width: 210,
-    z: 10,
+    z: 11,
     mobile: { top: 1190, left: 62, width: 100 }
   },
 

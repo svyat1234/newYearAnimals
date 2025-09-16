@@ -1,5 +1,8 @@
 import React from 'react';
 import './UILayer.css';
+import logoSvg from '../../assets/images/logo.svg';
+import tgSvg from '../../assets/images/tg.svg';
+import vkSvg from '../../assets/images/vk.svg';
 
 const UILayer = () => {
   return (
@@ -7,7 +10,7 @@ const UILayer = () => {
       {/* Header */}
       <header className="header container">
         <a href="#" className="header__logo">
-          <img src="/images/logo.svg" alt="Logo" />
+          <img src={logoSvg} alt="Logo" />
         </a>
 
         <a href="#" className="header__btn link">Помочь фонду</a>
@@ -59,10 +62,10 @@ const UILayer = () => {
 
             <div className="footer__socials">
               <a href="#" className="footer__social-link">
-                <img src="./src/assets/images/tg.svg" alt="Telegram" />
+                <img src={tgSvg} alt="Telegram" />
               </a>
               <a href="#" className="footer__social-link">
-                <img src="./src/assets/images/vk.svg" alt="VK" />
+                <img src={vkSvg} alt="VK" />
               </a>
             </div>
 

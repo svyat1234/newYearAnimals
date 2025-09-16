@@ -3,6 +3,7 @@ import BackgroundLayer from './layers/BackgroundLayer';
 import MiddlegroundLayer from './layers/MiddlegroundLayer';
 import ForegroundLayer from './layers/ForegroundLayer';
 import InteractiveLayer from './layers/InteractiveLayer';
+import SnowLayer from './layers/SnowLayer';
 import UILayer from './ui/UILayer';
 import ModalSystem from './modals/ModalSystem';
 import './GameBoard.css';
@@ -22,6 +23,9 @@ const GameBoard = () => {
       {/* Интерактивные элементы - кликабельные цифры */}
       <InteractiveLayer />
       
+      {/* Снежный верхний слой (над всем UI, под модалками) */}
+      <SnowLayer />
+
       {/* UI элементы - заголовки, кнопки */}
       <UILayer />
       
