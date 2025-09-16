@@ -1,9 +1,16 @@
 .game-board {
   position: relative;
   width: 100%;
-  
+  /* Keep board proportional to design size */
+  aspect-ratio: 1920 / 5541; /* desktop design */
   /* Центрирование на больших экранах */
   margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .game-board {
+    aspect-ratio: 320 / 3172; /* mobile design */
+  }
 }
 
 /* Z-index слои */

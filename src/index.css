@@ -26,6 +26,20 @@
   font-style: italic;
 }
 
+:root {
+  /* 1 unit equals 1px at the given design width */
+  --vw1920: calc(100vw / 1920);
+  --vw320: calc(100vw / 320);
+  /* unified unit used across styles */
+  --vw: var(--vw1920);
+}
+
+@media (max-width: 1024px) {
+  :root {
+    --vw: var(--vw320);
+  }
+}
+
 * {
   margin: 0;
   padding: 0;

@@ -12,11 +12,20 @@ createRoot(document.getElementById('root')).render(
   </StrictMode>,
 )
 
-if ('serviceWorker' in navigator) {
+// Register service worker only in production; in dev ensure old SW/caches are cleared
+if (import.meta.env?.PROD && 'serviceWorker' in navigator) {
   window.addEventListener('load', () => {
     const swUrl = '/sw.js'
     navigator.serviceWorker.register(swUrl).catch((err) => {
       console.error('SW registration failed:', err)
     })
   })
+} else if ('serviceWorker' in navigator) {
+  // Dev: unregister any existing service workers and clear caches to avoid white screen
+  navigator.serviceWorker.getRegistrations?.().then((regs) => {
+    regs.forEach((reg) => reg.unregister().catch(() => {}))
+  }).catch(() => {})
+  if (window.caches?.keys) {
+    caches.keys().then((keys) => keys.forEach((k) => caches.delete(k))).catch(() => {})
+  }
 }

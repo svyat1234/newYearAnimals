@@ -12,14 +12,14 @@
 .point-btn {
   position: relative;
   isolation: isolate; /* создаём собственный стек */
-  width: calc((134 / 1920) * 100vw);
-  height: calc((134 / 1920) * 100vw);
+  width: calc(var(--vw) * 134);
+  height: calc(var(--vw) * 134);
   border-radius: 50%;
   border: none;
   background: transparent; /* фон рисуем псевдоэлементом */
   color: #000;
   font-family: 'Rostov';
-  font-size: calc((60 / 1920) * 100vw);
+  font-size: calc(var(--vw) * 60);
   font-weight: 400;
   line-height: 1;
   display: flex;
@@ -33,9 +33,9 @@
   position: absolute;
   content: '';
   left: 0;
-  top: calc((12 / 1920) * 100vw);
-  width: calc((134 / 1920) * 100vw);
-  height: calc((134 / 1920) * 100vw);
+  top: calc(var(--vw) * 12);
+  width: calc(var(--vw) * 134);
+  height: calc(var(--vw) * 134);
   background: #000;
   border-radius: 50%;
   z-index: 0; /* ниже жёлтого круга */
@@ -47,8 +47,8 @@
   content: '';
   left: 0;
   top: 0;
-  width: calc((134 / 1920) * 100vw);
-  height: calc((134 / 1920) * 100vw);
+  width: calc(var(--vw) * 134);
+  height: calc(var(--vw) * 134);
   background: #FFDF59;
   border-radius: 50%;
   z-index: 1;
@@ -63,8 +63,8 @@
 /* Вариант внешнего вида для второй кнопки */
 
 .point-btn.variant-2 {
-  width: calc((146 / 1920) * 100vw);
-  height: calc((135 / 1920) * 100vw);
+  width: calc(var(--vw) * 146);
+  height: calc(var(--vw) * 135);
 }
 
 .point-btn.variant-2::before {
@@ -77,4 +77,28 @@
   border-radius: 0;
   box-sizing: border-box;
   background: url('../../../public/images/srar-btn.svg') no-repeat center / cover;
+}
+
+
+@media (max-width: 1024px) {
+  .point-btn {
+    width: calc(var(--vw) * 76);
+    height: calc(var(--vw) * 76);
+    font-size: calc(var(--vw) * 32);
+  }
+
+  .point-btn::before,
+  .point-btn::after {
+    width: calc(var(--vw) * 76);
+    height: calc(var(--vw) * 76);
+  }
+
+  .point-btn::before {
+    top: calc(var(--vw) * 7);
+  }
+
+  .point-btn.variant-2 {
+    width: calc(var(--vw) * 82);
+    height: calc(var(--vw) * 76);
+  }
 }

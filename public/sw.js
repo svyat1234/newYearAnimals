@@ -1,7 +1,6 @@
-const CACHE_NAME = 'nytrail-cache-v1';
+const CACHE_NAME = 'nytrail-cache-v3';
+// Do not precache app shell HTML to avoid stale white screen
 const CORE_ASSETS = [
-  '/',
-  '/index.html',
   '/manifest.webmanifest',
   '/vite.svg'
 ];
