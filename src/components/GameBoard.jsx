@@ -1,7 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import BackgroundLayer from './layers/BackgroundLayer';
 import MiddlegroundLayer from './layers/MiddlegroundLayer';
-import ForegroundLayer from './layers/ForegroundLayer';
 import InteractiveLayer from './layers/InteractiveLayer';
 import SnowLayer from './layers/SnowLayer';
 import UILayer from './ui/UILayer';
@@ -37,11 +36,8 @@ const GameBoard = () => {
       {/* Средний слой - персонажи, деревья, объекты */}
       <MiddlegroundLayer />
       
-      {/* Передний слой - тропинка, передний план */}
-      <ForegroundLayer />
-      
       {/* Интерактивные элементы - кликабельные цифры */}
-      <InteractiveLayer onOpenQuestion={openQuestion} />
+      <InteractiveLayer onOpenQuestion={openQuestion} answeredMap={questionStates} />
       
       {/* Снежный верхний слой (над всем UI, под модалками) */}
       <SnowLayer />

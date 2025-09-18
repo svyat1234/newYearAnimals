@@ -36,7 +36,7 @@ const ModalSystem = ({ isQuestionOpen = false, currentQuestionId = 1, onCloseQue
           onClose={onCloseQuestion}
         />
       )}
-      {/* <CompletionModal isOpen={false} onClose={() => {}} result={{ title: '', text: '', image: '' }} /> */}
+      <CompletionModal isOpen={!isQuestionOpen} onClose={() => {}} />
     </div>
   )
 }

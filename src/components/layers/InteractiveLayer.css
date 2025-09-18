@@ -54,6 +54,11 @@
   z-index: 1;
 }
 
+/* Пройденный тест: зелёный круг */
+.point-btn.point-btn--completed::after {
+  background: #368F5A;
+}
+
 /* Текст поверх всего */
 .point-btn__text {
   position: relative;

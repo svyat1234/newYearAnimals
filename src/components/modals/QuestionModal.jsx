@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './QuestionModal.css'
 import { questionModals } from '../../data/modals/questions'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 // Basic question modal markup. Styling and logic will be added later.
 // Props suggestion:
@@ -14,6 +15,8 @@ const QuestionModal = ({ isOpen = true, onClose, questionId = 1, answered: answe
   // Состояние для выбранного ответа
   const [selectedAnswer, setSelectedAnswer] = useState(selectedAnswerProp)
   const [answered, setAnswered] = useState(answeredProp)
+
+  const isMobile = useIsMobile(1024)
 
   // синхронизация с пропсами при открытии
   React.useEffect(() => {
@@ -30,57 +33,66 @@ const QuestionModal = ({ isOpen = true, onClose, questionId = 1, answered: answe
       onClick={() => onClose && onClose()}
     >
         <div 
-          className="modal__content"
+          className="question-modal__content"
           onClick={(e) => e.stopPropagation()}
         >
 
             <button 
-              className="modal__close"
+              className="question-modal__close"
               type="button"
               aria-label="Закрыть тест"
               onClick={() => onClose && onClose()}
             ></button>
 
-            <div className="modal__img-wrap">
-                <img src={question.image} alt="" className="modal__img" />
+            {isMobile && (
+              <div className="question-modal__heading">
+                <span className="question-modal__subtitle">{question.subtitle}</span>
+                <h2 className="question-modal__title">{question.title}</h2>
+              </div>
+            )}
+
+            <div className="question-modal__img-wrap">
+                <img src={question.image} alt="" className="question-modal__img" />
             </div> 
 
-            <div className="modal__test">
+            <div className="question-modal__test">
 
-                <div className="modal__heading">
-                    <span className="modal__subtitle">{question.subtitle}</span>
-                    <h2 className="modal__title">{question.title}</h2>
-                </div>
+                {!isMobile && (
+                  <div className="question-modal__heading">
+                      <span className="question-modal__subtitle">{question.subtitle}</span>
+                      <h2 className="question-modal__title">{question.title}</h2>
+                  </div>
+                )}
                 
                 {/* Варианты ответов с кастомными чекбоксами */}
-                <div className="modal__test-questions">
+                <div className="question-modal__test-questions">
                     {question.choices.map((choice, index) => (
                         <div 
                             key={index} 
-                            className={`modal__test-question ${answered ? (choice.isCorrect ? 'modal__test-question--right' : 'modal__test-question--wrong') : ''}`}
+                            className={`question-modal__test-question ${answered ? (choice.isCorrect ? 'question-modal__test-question--right' : 'question-modal__test-question--wrong') : ''}`}
                         >
                             <label 
-                                className="modal__test-option"
+                                className="question-modal__test-option"
                                 onClick={() => setSelectedAnswer(index)}
                             >
                                 <input 
-                                    className="modal__test-input" 
+                                    className="question-modal__test-input" 
                                     type="radio" 
                                     name="question"
                                     checked={selectedAnswer === index}
                                     onChange={() => setSelectedAnswer(index)}
                                 />
-                                <span className={`modal__test-mark ${selectedAnswer === index ? 'modal__test-mark--active' : ''}`}></span>
-                                <span className="modal__test-text">{choice.text}</span>
+                                <span className={`question-modal__test-mark ${selectedAnswer === index ? 'question-modal__test-mark--active' : ''}`}></span>
+                                <span className="question-modal__test-text">{choice.text}</span>
                             </label>
-                            <div className={`modal__test-explain ${answered ? '' : 'is-hidden'}`}>
+                            <div className={`question-modal__test-explain ${answered ? '' : 'is-hidden'}`}>
                                 {choice.explanation}
                             </div>
                         </div>
                     ))}
                 </div>
 
-                <div className="modal__test-btns">
+                <div className="question-modal__test-btns">
 
                     <a href="" className={`link ${answered ? '' : 'link--hidden'}`}>Помочь фонду</a>
 

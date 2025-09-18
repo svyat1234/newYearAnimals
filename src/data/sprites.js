@@ -9,7 +9,7 @@ export const sprites = [
     left: 1095,
     width: 542,
     z: 10,
-    mobile: { top: 377.23, left: 21, width: 222 }
+    mobile: { top: 377.23, left: 21, width: 222 },
   },
 
   { id: 'family',
@@ -264,4 +264,4 @@ export const sprites = [
     mobile: { top: 2544, left: 207.89, width: 53 }
   },
 
-];
+  ];

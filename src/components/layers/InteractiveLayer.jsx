@@ -3,7 +3,7 @@ import './InteractiveLayer.css';
 import { gameConfig } from '../../data/gameConfig';
 import { useIsMobile } from '../../hooks/useIsMobile';
 
-const InteractiveLayer = ({ onOpenQuestion }) => {
+const InteractiveLayer = ({ onOpenQuestion, answeredMap = {} }) => {
   const isMobile = useIsMobile(1024);
   return (
     <div className="interactive-layer">
@@ -11,7 +11,7 @@ const InteractiveLayer = ({ onOpenQuestion }) => {
         <button
           key={p.id}
           type="button"
-          className={`point-btn ${p.variant || 'default'} ${p.id === 2 ? 'variant-2' : ''}`}
+          className={`point-btn ${p.variant || 'default'} ${p.id === 2 ? 'variant-2' : ''} ${answeredMap[p.id]?.answered ? 'point-btn--completed' : ''}`}
           style={{
             position: 'absolute',
             top: `calc(${(isMobile ? (p.mobile?.top ?? p.top) : p.top) / (isMobile ? 3172 : 5541) * 100}%)`,
