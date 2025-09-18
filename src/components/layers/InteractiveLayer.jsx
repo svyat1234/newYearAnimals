@@ -3,7 +3,7 @@ import './InteractiveLayer.css';
 import { gameConfig } from '../../data/gameConfig';
 import { useIsMobile } from '../../hooks/useIsMobile';
 
-const InteractiveLayer = () => {
+const InteractiveLayer = ({ onOpenQuestion }) => {
   const isMobile = useIsMobile(1024);
   return (
     <div className="interactive-layer">
@@ -19,6 +19,7 @@ const InteractiveLayer = () => {
             ...(((isMobile ? p.mobile?.right : undefined) ?? p.right) != null && { right: `calc(${((isMobile ? p.mobile?.right : undefined) ?? p.right) / (isMobile ? 320 : 1920) * 100}%)` })
           }}
           aria-label={`Открыть тест ${p.id}`}
+          onClick={() => onOpenQuestion && onOpenQuestion(p.id)}
         >
           <span className="point-btn__text">{p.label ?? p.id}</span>
         </button>

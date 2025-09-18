@@ -4,7 +4,7 @@ import logoSvg from '../../assets/images/logo.svg';
 import tgSvg from '../../assets/images/tg.svg';
 import vkSvg from '../../assets/images/vk.svg';
 
-const UILayer = () => {
+const UILayer = ({ answeredCount = 0 }) => {
   return (
     <div className="ui-layer">
       {/* Header */}
@@ -74,15 +74,15 @@ const UILayer = () => {
         </div>
       </footer>
 
-      <div className="score">
-        <div className="score__star"></div>
-        <span className="score__text">
-
-          <span id="scoreCount">1</span>
-          /9
-
-        </span>
-      </div>
+      {answeredCount > 0 && (
+        <div className="score">
+          <div className="score__star"></div>
+          <span className="score__text">
+            <span id="scoreCount">{answeredCount}</span>
+            /9
+          </span>
+        </div>
+      )}
     </div>
   );
 };

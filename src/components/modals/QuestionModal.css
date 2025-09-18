@@ -1,0 +1,218 @@
+/* Стили для модалки с вопросами */
+
+.modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(26, 26, 26, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99999;
+  pointer-events: auto;
+}
+
+.modal__content {
+  position: relative;
+  background: #fff;
+  width: calc(var(--vw) * 1440);
+  height: calc(var(--vw) * 800);
+  padding-top: calc(var(--vw) * 50);
+  display: flex;
+  justify-content: space-between;
+  padding-left: calc(var(--vw) * 110);
+  padding-right: calc(var(--vw) * 200);
+}
+
+.modal__close {
+  position: absolute;
+  right: calc(var(--vw) * 50);
+  top: calc(var(--vw) * 50);
+  width: calc(var(--vw) * 24);
+  height: calc(var(--vw) * 24);
+  background: url(../../assets/images/modal-close.svg) no-repeat center / cover;
+  border: none;
+  cursor: pointer;
+}
+
+.modal__heading {
+  margin-bottom: calc(var(--vw) * 86);
+  width: calc(var(--vw) * 620);
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--vw) * 16);
+}
+
+.modal__subtitle {
+  color: #FFDF59;
+  font-size: calc(var(--vw) * 28);
+  line-height: 110%;
+  font-weight: 600;
+}
+
+.modal__title {
+  font-size: calc(var(--vw) * 34);
+  line-height: 110%;
+  font-weight: 600;
+} 
+
+.modal__img-wrap {
+  width: calc(var(--vw) * 330);
+}
+
+.modal__img {
+  width: 100%;
+  height: auto;
+}
+
+.modal__test {
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  height: calc(var(--vw) * 605);
+  max-width: calc(var(--vw) * 690);
+  width: 100%;
+}
+
+.modal__test-questions {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--vw) * 32);
+}
+
+.modal__test-question {
+  display: flex;
+  flex-direction: column;
+  gap: calc(var(--vw) * 16);
+  width: 100%;
+}
+
+.modal__test-option {
+  display: flex;
+  gap: calc(var(--vw) * 16);
+  cursor: pointer;
+  position: relative;
+  z-index: 1;
+}
+
+.modal__test-input {
+  /* Скрываем нативный input */
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal__test-mark {
+  position: relative;
+  min-width: calc(var(--vw) * 30);
+  height: calc(var(--vw) * 30);
+  border: calc(var(--vw) * 1) solid #1A1A1A;
+  border-radius: 50%;
+  background: #fff;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+/* Состояние выбранной кнопки */
+.modal__test-input:checked + .modal__test-mark {
+  border: calc(var(--vw) * 1) solid #FFDF59;
+}
+
+.modal__test-input:checked + .modal__test-mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--vw) * 20);
+  height: calc(var(--vw) * 20);
+  background: #FFDF59;
+  border-radius: 50%;
+}
+
+/* После ответа показываем маркер у всех опций */
+.is-answered .modal__test-mark::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: calc(var(--vw) * 20);
+  height: calc(var(--vw) * 20);
+  background: #FFDF59;
+  border-radius: 50%;
+}
+
+/* Скрыть заголовок после ответа */
+.is-answered .modal__heading {
+  display: none !important;
+}
+
+.modal__test-text {
+  font-size: calc(var(--vw) * 28);
+  line-height: 110%;
+}
+
+.modal__test-explain {
+  font-size: calc(var(--vw) * 24);
+  line-height: 110%;
+  font-style: italic    ;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.modal__test-question--right .modal__test-explain{
+  background: rgba(54, 143, 90, 0.2);
+}
+
+.modal__test-question--wrong .modal__test-explain{
+  background: rgba(243, 120, 95, 0.2);
+}
+
+
+.modal__test-btns {
+  position: absolute;
+  bottom: calc(var(--vw) * 50);
+  right: calc(var(--vw) * 50);
+  width: calc(var(--vw) * 840 );
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Вспомогательный класс для скрытия */
+.is-hidden {
+  display: none !important;
+}
+
+/* Плавное появление ссылки "Помочь фонду" */
+.link--hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.modal__test-question--right .modal__test-text{
+  color: #368F5A !important;
+}
+
+.modal__test-question--right .modal__test-mark{
+  border: 1px solid #368F5A !important;
+}
+
+.modal__test-question--right .modal__test-mark::after{
+  background: #368F5A !important;
+}
+
+.modal__test-question--wrong .modal__test-text{
+  color: #F3785F !important;
+}
+
+.modal__test-question--wrong .modal__test-mark{
+  border: 1px solid #F3785F !important;
+}
+
+.modal__test-question--wrong .modal__test-mark::after{
+  background: #F3785F !important;
+}
