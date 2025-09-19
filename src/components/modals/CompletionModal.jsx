@@ -17,8 +17,8 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
   const tab = content.tabs[activeTab]
 
   return (
-    <div className="modal completion-modal" role="dialog" aria-modal="true" onClick={onClose}>
-      <div className="completion-modal__content" onClick={(e) => e.stopPropagation()}>
+    <div className="modal completion-modal" role="dialog" aria-modal="true" onMouseDown={onClose}>
+      <div className="completion-modal__content" onMouseDown={(e) => e.stopPropagation()}>
         {/* Close button sits over blue panel area per spec */}
 
         {/* Tabs */}
@@ -41,7 +41,7 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
             
             {activeTab === 0 && (
               <div className="completion-modal__panel-body">
-                <button type="button" className="completion-modal__close" aria-label="Закрыть" onClick={onClose} />
+                <button type="button" className="completion-modal__close" aria-label="Закрыть" onMouseDown={onClose} />
 
                 <h2 className="completion-modal__title-line">
                   <span className="completion-modal__title-prefix">Ты:</span>
@@ -69,7 +69,7 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
             {activeTab === 1 && (
               <div className="completion-modal__panel-body completion-modal__panel-body--left">
 
-                <button type="button" className="completion-modal__close" aria-label="Закрыть" onClick={onClose} />
+                <button type="button" className="completion-modal__close" aria-label="Закрыть" onMouseDown={onClose} />
 
                 <p
                   className="completion-modal__desc"

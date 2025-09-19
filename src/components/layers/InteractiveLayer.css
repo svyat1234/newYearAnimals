@@ -28,6 +28,23 @@
   cursor: pointer;
 }
 
+.point-btn__hover {
+  position: absolute;
+  bottom: calc(var(--vw) * -20);
+  right: calc(var(--vw) * -15);
+  width: calc(var(--vw) * 95);
+  height: calc(var(--vw) * 83);
+  background: url(../../assets/images/lapka.svg) no-repeat center / cover;
+  z-index: 50;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.point-btn:hover .point-btn__hover{
+  opacity: 1;
+}
+
 /* Тень: позади кнопки, сдвинута вниз на 12px */
 .point-btn::before {
   position: absolute;
@@ -56,7 +73,7 @@
 
 /* Пройденный тест: зелёный круг */
 .point-btn.point-btn--completed::after {
-  background: #368F5A;
+  background: #D7E9DE;
 }
 
 /* Текст поверх всего */
@@ -82,6 +99,10 @@
   border-radius: 0;
   box-sizing: border-box;
   background: url('../../assets/images/star-btn.svg') no-repeat center / cover;
+}
+
+.point-btn.variant-2.point-btn--completed::after {
+  background: url('../../assets/images/star-btn-complited.svg') no-repeat center / cover;
 }
 
 

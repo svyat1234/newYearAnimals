@@ -10,6 +10,7 @@ import CompletionModal from './CompletionModal'
 // - handlers: onCloseQuestion, onCloseCompletion
 const ModalSystem = ({ isQuestionOpen = false, currentQuestionId = 1, onCloseQuestion, questionStates = {}, onAnswered }) => {
   const stateForCurrent = questionStates[currentQuestionId] || { answered: false, selectedAnswer: null }
+  const [isCompletionOpen, setIsCompletionOpen] = useState(false) // Модальное окно с результатом useState(false) - скрыто, useState(true) - открыто
 
   // Блокируем прокрутку сайта, когда открыта модалка
   useEffect(() => {
@@ -36,7 +37,7 @@ const ModalSystem = ({ isQuestionOpen = false, currentQuestionId = 1, onCloseQue
           onClose={onCloseQuestion}
         />
       )}
-      <CompletionModal isOpen={!isQuestionOpen} onClose={() => {}} />
+      <CompletionModal isOpen={isCompletionOpen && !isQuestionOpen} onClose={() => setIsCompletionOpen(false)} />
     </div>
   )
 }

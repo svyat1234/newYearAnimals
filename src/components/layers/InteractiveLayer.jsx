@@ -22,6 +22,8 @@ const InteractiveLayer = ({ onOpenQuestion, answeredMap = {} }) => {
           onClick={() => onOpenQuestion && onOpenQuestion(p.id)}
         >
           <span className="point-btn__text">{p.label ?? p.id}</span>
+
+          <span className="point-btn__hover"></span>
         </button>
       ))}
     </div>
