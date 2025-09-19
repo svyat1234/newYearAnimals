@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import './CompletionModal.css'
 import { completionData } from '../../data/modals/results'
+import { useIsMobile } from '../../hooks/useIsMobile'
 
 // Completion modal markup only (no business logic)
 // Props:
@@ -11,6 +12,7 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
   if (!isOpen) return null
 
   const content = data || completionData
+  const isMobile = useIsMobile(1024)
   const [activeTab, setActiveTab] = useState(0) // 0: first, 1: second
   const tab = content.tabs[activeTab]
 
@@ -32,7 +34,7 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
         </div>
 
         {/* Blue panel with background and text content */}
-        <div className="completion-modal__panel" style={{ backgroundImage: `url(${tab.background})` }}>
+        <div className="completion-modal__panel" style={{ backgroundImage: `url(${isMobile ? (tab.backgroundMobile || tab.background) : tab.background})` }}>
           {/* Panel inner spacing */}
           <div className="completion-modal__panel-inner">
             {/* First tab example layout (title, description, result, buttons) */}
@@ -69,15 +71,15 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
 
                 <button type="button" className="completion-modal__close" aria-label="Закрыть" onClick={onClose} />
 
-                <p className="completion-modal__desc">{tab.text}</p>
+                <p
+                  className="completion-modal__desc"
+                  dangerouslySetInnerHTML={{ __html: tab.text }}
+                />
 
                 <div className="completion-modal__about-actions">
                   <p className="completion-modal__secondary">А ещё хвостики всегда будут рады просто твоей поддержке</p>
-                  <div className="completion-modal__actions">
-                    <button type="button" className="action-button">{tab.buttonText}</button>
-                  </div>
+                  <button type="button" className="action-button">{tab.buttonText}</button>
                 </div>
-
               </div>
             )}
           </div>

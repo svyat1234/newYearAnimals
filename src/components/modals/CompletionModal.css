@@ -1,3 +1,14 @@
+.completion-modal__desc .highlight-underline {
+  position: relative;
+  display: inline; /* allow wrapping within the line */
+  color: #1A1A1A;
+  /* Native underline lets us control thickness and offset across wrapped lines */
+  text-decoration-line: underline;
+  text-decoration-color: #FFDF59;
+  text-decoration-thickness: 3px;
+  text-underline-offset: 5px; /* уменьшите до 1px, если нужно ещё выше */
+}
+
 .completion-modal {
   position: fixed;
   left: 0;
@@ -159,7 +170,6 @@
 @media (max-width: 1024px) {
   .completion-modal__content { width: 90vw; height: auto; }
   .completion-modal__panel { width: 100%; height: auto; min-height: calc(var(--vw) * 420); }
-  .completion-modal__panel-inner { padding: calc(var(--vw) * 24); }
   .completion-modal__panel-body { flex-direction: column; }
   .completion-modal__desc, .completion-modal__actions, .completion-modal__result { flex: none; }
   .completion-modal__tabs { gap: calc(var(--vw) * 12); }
@@ -169,6 +179,138 @@
 /* Tab 2 specifics */
 .completion-modal__panel-body--left {
   flex-direction: column; /* весь текст слева колонкой */
+}
+
+@media (max-width: 1024px) {
+  .completion-modal {
+    align-items: flex-start;
+    overflow-y: auto;
+    min-height: 100%;
+  }
+
+  .completion-modal__content {
+    width: 100%;
+    min-height: 100%;
+    padding: calc(var(--vw) * 10) calc(var(--vw) * 20) calc(var(--vw) * 20) calc(var(--vw) * 20); 
+  }
+
+  .completion-modal__panel {
+    margin-top: calc(var(--vw) * 20);
+    width: calc(var(--vw) * 280);
+    height: calc(var(--vw) * 512);
+  }
+
+  .completion-modal__tabs {
+    margin-top: 0;
+    gap: calc(var(--vw) * 10);
+  }
+
+  .completion-modal__tab {
+    width: 100%;
+    height: calc(var(--vw) * 6);
+  }
+
+  .completion-modal__title-line {
+    margin-top: 0;
+    margin-bottom: 0;
+    font-size: calc(var(--vw) * 25);
+    display: inline;
+    text-align: center;
+    line-height: 100%;
+  }
+
+  .completion-modal__panel-body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+  }
+
+  .completion-modal__panel-inner { padding: calc(var(--vw) * 20); } 
+
+  .completion-modal__desc {
+    margin: auto;
+    margin-top: calc(var(--vw) * 16);
+    font-size: calc(var(--vw) * 16);
+    max-width: calc(var(--vw) * 197);
+    text-align: center;
+    font-weight: normal;
+  } 
+
+  .completion-modal__result-wrap {
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .completion-modal__result {
+    position: absolute;
+    bottom: calc(var(--vw) * 112);
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+
+  .completion-modal__result-title, .completion-modal__result-value {
+    font-size: calc(var(--vw) * 20);
+  }
+
+  .completion-modal__actions {
+    width: 100%;
+    position: absolute;
+    bottom: calc(var(--vw) * 20);
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    padding: 0;
+    padding-inline: 20px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column-reverse;
+  }
+  
+  .completion-modal__actions .action-button {
+    width: 100%;
+  }
+
+  .completion-modal__actions .completion-modal__restart {
+    height: calc(var(--vw) * 38);
+    width: 100%;
+    font-size: calc(var(--vw) * 14);
+  }
+
+  .completion-modal__panel-body--left .completion-modal__desc {
+    margin-top: calc(var(--vw) * 150);
+    max-width: calc(var(--vw) * 224);
+  }
+
+  .completion-modal__about-actions {
+    flex-direction: column;
+    width: 100%;
+    gap: calc(var(--vw) * 16);
+    margin-bottom: calc(var(--vw) * 36);
+  }
+
+  .completion-modal__secondary {
+    font-size: calc(var(--vw) * 16);
+    text-align: center;
+    max-width: calc(var(--vw) * 226);
+  }
+
+  .completion-modal__about-actions .action-button {
+    width: 100%;
+  }
+
+  .completion-modal__desc .highlight-underline {
+    text-decoration-thickness: calc(var(--vw) * 2);
+    text-decoration-skip-ink: none;
+  }
+
+  .completion-modal__close {
+    width: calc(var(--vw) * 38);
+    height: calc(var(--vw) * 38);
+  }
 }
 
 
