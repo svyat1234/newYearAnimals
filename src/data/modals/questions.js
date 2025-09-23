@@ -2,14 +2,16 @@
 // image paths can be absolute from /public or imported via new URL(..., import.meta.url)
 
 // Импорт изображений
-import modal5Image from '../../assets/images/modal-5.svg'
+import modal5Image from '../../assets/images/modals/modal-1.svg' // Десктоп для 1 вопроса
+import modal5ImageMobile from '../../assets/images/modals/modal-mobile-1.svg' // Мобильная версия для 1 вопроса
 
 export const questionModals = [
   { 
     id: 1, 
-    subtitle: 'Ситуация 5', 
+    subtitle: 'Ситуация 1', 
     title: 'В новогодние праздники собака бегает по улице', 
     image: modal5Image,
+    imageMobile: modal5ImageMobile,
     correctAnswer: 2,
     choices: [
       { text: 'Возможно, она гуляет сама по себе — угощу ее, пусть гуляет', isCorrect: false, explanation: 'Неправильный вариант, самовыгул запрещен законом, животное скорее всего попало в беду (испугавшись салюта) либо находится у недобросовестного владельца' },
@@ -21,7 +23,8 @@ export const questionModals = [
     id: 2, 
     subtitle: 'Ситуация 2', 
     title: 'Вопрос 2', 
-    image: '',
+    image: '.',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },
@@ -34,6 +37,7 @@ export const questionModals = [
     subtitle: 'Ситуация 3', 
     title: 'Вопрос 3', 
     image: '',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },
@@ -46,6 +50,7 @@ export const questionModals = [
     subtitle: 'Ситуация 4', 
     title: 'Вопрос 4', 
     image: '',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },
@@ -58,6 +63,7 @@ export const questionModals = [
     subtitle: 'Ситуация 5', 
     title: 'В новогодние праздники собака бегает по улице', 
     image: modal5Image,
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Возможно, она гуляет сама по себе — угощу ее, пусть гуляет', isCorrect: false, explanation: 'Неправильный вариант, самовыгул запрещен законом, животное скорее всего попало в беду (испугавшись салюта) либо находится у недобросовестного владельца' },
@@ -70,6 +76,7 @@ export const questionModals = [
     subtitle: 'Ситуация 6', 
     title: 'Вопрос 6', 
     image: '',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },
@@ -82,6 +89,7 @@ export const questionModals = [
     subtitle: 'Ситуация 7', 
     title: 'Вопрос 7', 
     image: '',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },
@@ -94,6 +102,7 @@ export const questionModals = [
     subtitle: 'Ситуация 8', 
     title: 'Вопрос 8', 
     image: '',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },
@@ -106,6 +115,7 @@ export const questionModals = [
     subtitle: 'Ситуация 9', 
     title: 'Вопрос 9', 
     image: '',
+    imageMobile: '',
     correctAnswer: 2,
     choices: [
       { text: 'Вариант ответа 1', isCorrect: false, explanation: 'Объяснение для варианта 1' },

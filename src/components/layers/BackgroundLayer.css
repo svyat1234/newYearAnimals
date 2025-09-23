@@ -1,11 +1,29 @@
 .background-layer {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100%;
+  height: 100%;
   z-index: 0;
+  pointer-events: none;
+
+  /* Three layered backgrounds: sky (0), snow (965), path (899) */
+  background-repeat: no-repeat, no-repeat, no-repeat;
+  background-position: top calc(var(--vw) * 0) center,
+                       top calc(var(--vw) * 965) center,
+                       top calc(var(--vw) * 899) center;
+  background-size: 100% auto, 100% auto, 100% auto;
+
+  /* Desktop sources */
+  background-image: url('../../assets/images/sky-desktop.svg'),
+                    url('../../assets/images/snow-desktop.svg'),
+                    url('../../assets/images/path-desktop.svg');
 }
 
-.background-image { 
-  display: block;
-  width: 100%;
-  height: auto;
+@media (max-width: 1024px) {
+  .background-layer {
+    /* Mobile sources */
+    background-image: url('../../assets/images/sky-mobile.svg'),
+                      url('../../assets/images/snow-mobile.svg'),
+                      url('../../assets/images/path-mobile.svg');
+  }
 }

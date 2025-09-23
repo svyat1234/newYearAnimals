@@ -26,7 +26,8 @@ const UILayer = ({ answeredCount = 0 }) => {
         </div>
 
         <div className="promo__clue">
-          <span className="promo__clue-text">Нажимай на кружочки с цифрами, отвечай на вопросы</span>
+          <span className="promo__clue-text promo__clue-text--desktop">Нажимай на кружочки с цифрами, отвечай на вопросы</span>
+          <span className="promo__clue-text promo__clue-text--mobile">Нажимай на кружочки – отвечай на вопросы</span>
         </div>
         
       </section>

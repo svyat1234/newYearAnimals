@@ -52,7 +52,7 @@ const QuestionModal = ({ isOpen = true, onClose, questionId = 1, answered: answe
             )}
 
             <div className="question-modal__img-wrap">
-                <img src={question.image} alt="" className="question-modal__img" />
+                <img src={(isMobile && question.imageMobile) ? question.imageMobile : question.image} alt="" className="question-modal__img" />
             </div> 
 
             <div className="question-modal__test">
