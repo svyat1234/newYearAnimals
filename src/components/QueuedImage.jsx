@@ -24,7 +24,7 @@ const QueuedImage = ({ src, alt = '', imgProps = {}, style }) => {
       alt={alt}
       loading="lazy"
       decoding="async"
-      fetchpriority={imgProps.fetchpriority || 'auto'}
+      fetchPriority={imgProps.fetchPriority || imgProps.fetchpriority || 'auto'}
       style={style}
       {...imgProps}
     />

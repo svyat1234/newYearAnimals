@@ -5,25 +5,23 @@
   height: 100%;
   z-index: 0;
   pointer-events: none;
-
-  /* Three layered backgrounds: sky (0), snow (965), path (899) */
-  background-repeat: no-repeat, no-repeat, no-repeat;
-  background-position: top calc(var(--vw) * 0) center,
-                       top calc(var(--vw) * 965) center,
-                       top calc(var(--vw) * 899) center;
-  background-size: 100% auto, 100% auto, 100% auto;
-
-  /* Desktop sources */
-  background-image: url('../../assets/images/sky-desktop.svg'),
-                    url('../../assets/images/snow-desktop.svg'),
-                    url('../../assets/images/path-desktop.svg');
 }
 
 @media (max-width: 1024px) {
-  .background-layer {
-    /* Mobile sources */
-    background-image: url('../../assets/images/sky-mobile.svg'),
-                      url('../../assets/images/snow-mobile.svg'),
-                      url('../../assets/images/path-mobile.svg');
-  }
+  .background-layer {}
+}
+
+.bg-segment { position: absolute; left: 0; width: 100%; }
+.bg-img { display: block; width: 100%; height: auto; }
+
+/* Desktop offsets (от высоты макета 5541px) */
+.bg-sky  { top: calc(0 / 5541 * 100%); }
+.bg-snow { top: calc(965 / 5541 * 100%); }
+.bg-path { top: calc(899 / 5541 * 100%); }
+
+/* Mobile offsets (от высоты макета 3172px) */
+@media (max-width: 1024px) {
+  .bg-sky  { top: calc(0 / 3172 * 100%); }
+  .bg-snow { top: calc(512 / 3172 * 100%); }
+  .bg-path { top: calc(464 / 3172 * 100%); }
 }

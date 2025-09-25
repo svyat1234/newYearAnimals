@@ -172,9 +172,11 @@
   position: absolute;
   bottom: 0;
   left: 0;
+  width: 100%;
   background: url(../../assets/images/footer-bg.svg) no-repeat center / cover;
   padding-top: calc(var(--vw) * 153);
   padding-bottom: calc(var(--vw) * 50);
+  padding-inline: calc(var(--vw) * 50);
 }
 
 .footer__title {
@@ -323,6 +325,17 @@
     width: calc(var(--vw) * 136);
     height: calc(var(--vw) * 38);
   }
+
+  .action-button:hover {
+    background-color: #FFDF59;
+    border: none;
+  }
+  
+  .action-button:active {
+    background-color: #fff;
+    border: 3px solid #FFDF59;
+  }
+  
 
   .link {
     line-height: 100%;
