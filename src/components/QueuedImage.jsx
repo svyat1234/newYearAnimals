@@ -1,32 +1,17 @@
-import React, { useEffect, useState } from 'react';
-import { enqueueImageLoad } from '../utils/imageQueue';
+import React from 'react';
+import LazySvg from './LazySvg';
 
 const QueuedImage = ({ src, alt = '', imgProps = {}, style }) => {
-  const [ready, setReady] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    setReady(false);
-    enqueueImageLoad(src)
-      .then(() => { if (!cancelled) setReady(true); })
-      .catch(() => { if (!cancelled) setReady(true); });
-    return () => { cancelled = true; };
-  }, [src]);
-
-  if (!ready) {
-    // Reserve layout to reduce shifts if width/height provided via style
-    return <div style={style} aria-hidden="true" />;
-  }
-
   return (
-    <img
+    <LazySvg
       src={src}
       alt={alt}
-      loading="lazy"
-      decoding="async"
-      fetchPriority={imgProps.fetchPriority || imgProps.fetchpriority || 'auto'}
+      className={imgProps.className}
       style={style}
-      {...imgProps}
+      imgProps={{
+        ...imgProps,
+        fetchPriority: imgProps.fetchPriority || imgProps.fetchpriority || 'auto'
+      }}
     />
   );
 };
