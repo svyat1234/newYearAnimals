@@ -131,13 +131,23 @@
 
 .promo__clue {
   position: absolute;
-  top: calc(var(--vw) * 1030);
-  left: calc(var(--vw) * 881);
+  top: calc(1030 / 5541 * 100%);
+  left: calc(880 / 1920 * 100%);
   width: calc(var(--vw) * 448);
   padding: calc(var(--vw) * 27);
   background: #fff;
   border-radius: calc(var(--vw) * 20);
   box-shadow: 0 calc(var(--vw) * 4) calc(var(--vw) * 14.43) 0px rgba(26, 26, 26, 0.1);
+  
+  /* Анимация появления/исчезновения */
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.promo__clue--visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .promo__clue::after {
@@ -378,8 +388,8 @@
   }
 
   .promo__clue { 
-    top: calc(var(--vw) * 544);
-    left: calc(var(--vw) * 37);
+    top: calc(544 / 3172 * 100%);
+    left: calc(37 / 320 * 100%);
     width: calc(var(--vw) * 179);
     padding: calc(var(--vw) * 12);
     border-radius: calc(var(--vw) * 10);

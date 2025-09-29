@@ -127,4 +127,8 @@
     width: calc(var(--vw) * 82);
     height: calc(var(--vw) * 76);
   }
+
+  .point-btn__hover {
+    display: none;
+  }
 }

@@ -1,4 +1,4 @@
-const DEFAULT_CONCURRENCY = 4;
+const DEFAULT_CONCURRENCY = 6; // Увеличиваем для более плавной загрузки
 
 class TaskQueue {
   constructor(concurrency = DEFAULT_CONCURRENCY) {

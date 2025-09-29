@@ -1,20 +1,21 @@
 import React, { useState } from 'react'
 import './CompletionModal.css'
-import { completionData } from '../../data/modals/results'
+import { completionData, completionTabs, modalCloseColors } from '../../data/modals/results'
 import { useIsMobile } from '../../hooks/useIsMobile'
 
 // Completion modal markup only (no business logic)
 // Props:
 // - isOpen: boolean
 // - onClose: () => void
-// - data?: completionData override (optional)
-const CompletionModal = ({ isOpen = false, onClose, data }) => {
+// - modalIndex?: number (0-4, какую модалку показать)
+const CompletionModal = ({ isOpen = false, onClose, modalIndex = 0 }) => {
   if (!isOpen) return null
 
-  const content = data || completionData
+  const content = completionData[modalIndex] || completionData[0]
+  const closeButtonColor = modalCloseColors[modalIndex] || modalCloseColors[0]
   const isMobile = useIsMobile(1024)
   const [activeTab, setActiveTab] = useState(0) // 0: first, 1: second
-  const tab = content.tabs[activeTab]
+  const tab = completionTabs[activeTab]
 
   return (
     <div className="modal completion-modal" role="dialog" aria-modal="true" onMouseDown={onClose}>
@@ -41,7 +42,13 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
             
             {activeTab === 0 && (
               <div className="completion-modal__panel-body">
-                <button type="button" className="completion-modal__close" aria-label="Закрыть" onMouseDown={onClose} />
+                <button 
+                  type="button" 
+                  className="completion-modal__close" 
+                  aria-label="Закрыть" 
+                  onMouseDown={onClose}
+                  style={{ backgroundColor: closeButtonColor }}
+                />
 
                 <h2 className="completion-modal__title-line">
                   <span className="completion-modal__title-prefix">Ты:</span>
@@ -54,11 +61,11 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
                     <p className="completion-modal__desc">{content.description}</p>
                     <div className="completion-modal__result">
                       <div className="completion-modal__result-title">Твой результат</div>
-                      <div className="completion-modal__result-value">2/9</div>
+                      <div className="completion-modal__result-value">{content.result}</div>
                     </div>
                     <div className="completion-modal__actions">
                       <button type="button" className="completion-modal__restart">Пройти еще раз</button>
-                      <button type="button" className="action-button">{tab.buttonText}</button>
+                      <button type="button" className="action-button">Поделиться</button>
                     </div>
                   </div>
                 </div>
@@ -69,7 +76,13 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
             {activeTab === 1 && (
               <div className="completion-modal__panel-body completion-modal__panel-body--left">
 
-                <button type="button" className="completion-modal__close" aria-label="Закрыть" onMouseDown={onClose} />
+                <button 
+                  type="button" 
+                  className="completion-modal__close" 
+                  aria-label="Закрыть" 
+                  onMouseDown={onClose}
+                  style={{ backgroundColor: closeButtonColor }}
+                />
 
                 <p
                   className="completion-modal__desc"
@@ -78,7 +91,7 @@ const CompletionModal = ({ isOpen = false, onClose, data }) => {
 
                 <div className="completion-modal__about-actions">
                   <p className="completion-modal__secondary">А ещё хвостики всегда будут рады просто твоей поддержке</p>
-                  <button type="button" className="action-button">{tab.buttonText}</button>
+                  <button type="button" className="action-button">Помочь фонду</button>
                 </div>
               </div>
             )}

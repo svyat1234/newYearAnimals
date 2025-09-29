@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { enqueueImageLoad } from '../utils/imageQueue';
 
 const LazySvg = ({ 
   src, 
@@ -23,7 +24,8 @@ const LazySvg = ({
         });
       },
       {
-        rootMargin: '50px', // Начинаем загрузку за 50px до появления в viewport
+        // Увеличиваем область предзагрузки в зависимости от размера экрана
+        rootMargin: window.innerWidth <= 1024 ? '200px' : '300px',
         threshold: 0.1
       }
     );
@@ -41,10 +43,10 @@ const LazySvg = ({
 
   useEffect(() => {
     if (isInView && !isLoaded) {
-      const img = new Image();
-      img.onload = () => setIsLoaded(true);
-      img.onerror = () => setIsLoaded(true); // Показываем даже при ошибке
-      img.src = src;
+      // Используем очередь изображений для более плавной загрузки
+      enqueueImageLoad(src)
+        .then(() => setIsLoaded(true))
+        .catch(() => setIsLoaded(true)); // Показываем даже при ошибке
     }
   }, [isInView, src, isLoaded]);
 

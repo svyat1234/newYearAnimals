@@ -1,10 +1,45 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './UILayer.css';
 import logoSvg from '../../assets/images/logo.svg';
 import tgSvg from '../../assets/images/tg.svg';
 import vkSvg from '../../assets/images/vk.svg';
 
 const UILayer = ({ answeredCount = 0 }) => {
+  const [isClueVisible, setIsClueVisible] = useState(false);
+  const clueRef = useRef(null);
+
+  useEffect(() => {
+    if (!clueRef.current) return;
+
+    // Определяем отступ в зависимости от размера экрана
+    const isMobile = window.innerWidth <= 1024;
+    const marginBottom = isMobile ? '-150px' : '-50px';
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setIsClueVisible(true);
+          } else {
+            setIsClueVisible(false);
+          }
+        });
+      },
+      {
+        rootMargin: `0px 0px ${marginBottom} 0px`,
+        threshold: 0
+      }
+    );
+
+    observer.observe(clueRef.current);
+
+    return () => {
+      if (clueRef.current) {
+        observer.unobserve(clueRef.current);
+      }
+    };
+  }, []);
+
   return (
     <div className="ui-layer">
       {/* Header */}
@@ -25,7 +60,10 @@ const UILayer = ({ answeredCount = 0 }) => {
           <button className="action-button">Пройти тест</button>
         </div>
 
-        <div className="promo__clue">
+        <div 
+          ref={clueRef}
+          className={`promo__clue ${isClueVisible ? 'promo__clue--visible' : ''}`}
+        >
           <span className="promo__clue-text promo__clue-text--desktop">Нажимай на кружочки с цифрами, отвечай на вопросы</span>
           <span className="promo__clue-text promo__clue-text--mobile">Нажимай на кружочки – отвечай на вопросы</span>
         </div>
@@ -59,13 +97,13 @@ const UILayer = ({ answeredCount = 0 }) => {
 
           <div className="footer__links">
 
-            <a href="#" className="action-button">Наш сайт</a>
+            <a href="https://urbananimal.ru/" target="_blank" className="action-button">Наш сайт</a>
 
             <div className="footer__socials">
-              <a href="#" className="footer__social-link">
+              <a href="https://t.me/urbananimal" target="_blank" className="footer__social-link">
                 <img src={tgSvg} alt="Telegram" />
               </a>
-              <a href="#" className="footer__social-link">
+              <a href="https://vk.com/urbananimal" target="_blank" className="footer__social-link">
                 <img src={vkSvg} alt="VK" />
               </a>
             </div>
