@@ -84,12 +84,12 @@ const UILayer = ({ answeredCount = 0 }) => {
 
               <div className="footer__nav-link-block">
                 <span className="footer__nav-title">Дизайн</span>
-                <a href="#" className="footer__nav-link link">Коллектив группа</a>
+                <a href="https://collectivegroup.ru/" target="_blank" className="footer__nav-link link">Коллектив группа</a>
               </div>
 
               <div className="footer__nav-link-block">
                 <span className="footer__nav-title">Разработка</span>
-                <a href="#" className="footer__nav-link link">Название</a>
+                <a href="https://code-x.website/" target="_blank" className="footer__nav-link link">Code-x Web Development</a>
               </div>
 
             </nav>
