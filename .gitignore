@@ -116,6 +116,5 @@ backend/venv/
 *.pyd
 
 # Django runtime files
-backend/db.sqlite3
 backend/staticfiles/
 backend/static_root/
