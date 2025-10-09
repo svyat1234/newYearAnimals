@@ -1,0 +1,39 @@
+.game-board {
+  position: relative;
+  width: 100%;
+  /* Keep board proportional to design size */
+  aspect-ratio: 1920 / 5541; /* desktop design */
+  /* Центрирование на больших экранах */
+  margin: 0 auto;
+}
+
+@media (max-width: 1024px) {
+  .game-board {
+    aspect-ratio: 320 / 3172; /* mobile design */
+  }
+}
+
+/* Z-index слои */
+.background-layer {
+  z-index: 0;
+}
+
+.middleground-layer {
+  z-index: 10;
+}
+
+.foreground-layer {
+  z-index: 20;
+}
+
+.interactive-layer {
+  z-index: 30;
+}
+
+.ui-layer {
+  z-index: 40;
+}
+
+.modal-system {
+  z-index: 100;
+}

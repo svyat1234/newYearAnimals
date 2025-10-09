@@ -1,0 +1,18 @@
+.snow-layer {
+  position: absolute;
+  top: calc(var(--vw) * 38) !important;
+  left: 50% !important;
+  transform: translateX(-50%);
+  width: calc(var(--vw) * 296);
+  inset: 0;
+  z-index: 90; /* ниже модалок (100), выше UI/кнопок */
+  pointer-events: none;
+}
+
+.snow-image {
+  width: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+

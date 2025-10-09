@@ -1,0 +1,27 @@
+.background-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 1024px) {
+  .background-layer {}
+}
+
+.bg-segment { position: absolute; left: 0; width: 100%; }
+.bg-img { display: block; width: 100%; height: auto; }
+
+/* Desktop offsets (от высоты макета 5541px) */
+.bg-sky  { top: calc(0 / 5541 * 100%); }
+.bg-snow { top: calc(965 / 5541 * 100%); }
+.bg-path { top: calc(899 / 5541 * 100%); }
+
+/* Mobile offsets (от высоты макета 3172px) */
+@media (max-width: 1024px) {
+  .bg-sky  { top: calc(0 / 3172 * 100%); }
+  .bg-snow { top: calc(512 / 3172 * 100%); }
+  .bg-path { top: calc(464 / 3172 * 100%); }
+}
