@@ -77,13 +77,6 @@ const CompletionModal = ({ isOpen = false, onClose, completionData }) => {
                 </h2>
 
                 <div className="completion-modal__result-wrap">
-                  {/* --- Это тестовая редакция --- */} 
-                  {content.foregroundImage && activeTab === 0 && (
-                    <div className="completion-modal__img-wrap">
-                      <img src={content.foregroundImage} alt="" className="completion-modal__img" />
-                    </div>
-                  )}
-                            {/* ---  --- */} 
                   <div className="completion-modal__result-content">
                     <p className="completion-modal__desc">{content.description}</p>
                     <div className="completion-modal__result">

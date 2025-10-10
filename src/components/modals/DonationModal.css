@@ -1,0 +1,48 @@
+/* Overlay для затемнения фона */
+.donation-modal {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 10000;
+}
+
+/* Контейнер модального окна */
+.donation-modal__content {
+  position: relative;
+  width: calc(var(--vw) * 1440);
+  background: #fff;
+  overflow: hidden;
+  padding: calc(var(--vw) * 50);
+}
+
+/* Кнопка закрытия */
+.donation-modal__close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: #7A9AEA;
+  border: 0;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.donation-modal__close:hover {
+  opacity: 0.8;
+}
+
+/* Тело модалки */
+
+
+.donation-modal__body {
+  display: flex;
+  flex-direction: column;
+}
+
+/* TODO: Добавьте свои стили для формы оплаты */
+

@@ -110,7 +110,7 @@
   display: flex; /* Включаем Flexbox */
   width: 100%;
   /* Размещаем элементы по краям (картинку слева, текст справа) */
-  justify-content: space-between; 
+  justify-content: flex-end; 
   /* Выравниваем по центру по вертикали */
   align-items: center; 
   gap: calc(var(--vw) * 40); /* Отступ между картинкой и текстом */

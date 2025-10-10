@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import './ModalSystem.css'
 import QuestionModal from './QuestionModal'
 import CompletionModal from './CompletionModal'
+import DonationModal from './DonationModal'
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
@@ -72,6 +74,8 @@ const ModalSystem = ({
         onClose={onCloseCompletion}
         completionData={userCompletionResult}
       />
+      {/** Temporary render of DonationModal for layout work via portal to escape stacking contexts */}
+      {createPortal(<DonationModal isOpen={true} onClose={() => {}} />, document.body)}
     </div>
   )
 }
