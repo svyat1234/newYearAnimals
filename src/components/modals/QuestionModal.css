@@ -12,6 +12,27 @@
   align-items: center;
   z-index: 99999;
   pointer-events: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Кастомный скроллбар для модалки вопросов */
+.question-modal::-webkit-scrollbar {
+  width: calc(var(--vw) * 8);
+}
+
+.question-modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: calc(var(--vw) * 4);
+}
+
+.question-modal::-webkit-scrollbar-thumb {
+  background: #FFDF59;
+  border-radius: calc(var(--vw) * 4);
+}
+
+.question-modal::-webkit-scrollbar-thumb:hover {
+  background: #e6c84f;
 }
 
 .question-modal__content {
@@ -222,10 +243,10 @@
   .question-modal {
     overflow-y: auto;
     align-items: flex-start;
+    padding: calc(var(--vw) * 20);
   }
 
   .question-modal__content {
-    margin-top: calc(var(--vw) * 20);
     width: calc(var(--vw) * 280);
     min-height: calc(var(--vw) * 528);
     height: auto;
@@ -238,7 +259,7 @@
 
   .question-modal__close {
     width: calc(var(--vw) * 18);
-    height: calc(var(--vw) * 16);
+    height: calc(var(--vw) * 18);
     right: calc(var(--vw) * 20);
     top: calc(var(--vw) * 20);
   }
@@ -261,7 +282,7 @@
 
   .question-modal__img-wrap {
     width: calc(var(--vw) * 146);
-    height: calc(var(--vw) * 96);
+    min-height: calc(var(--vw) * 96);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,4 +343,16 @@
     display: none;
   }
 
+}
+
+/* Медиа-запрос для широких экранов с низкой высотой (например, 1920x800) */
+@media (min-aspect-ratio: 2.3/1) {
+  .question-modal {
+    align-items: flex-start;
+    padding: calc(var(--vw) * 50);
+  }
+  
+  .question-modal__content {
+    margin-top: 0;
+  }
 }

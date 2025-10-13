@@ -21,6 +21,27 @@
   align-items: center;
   z-index: 99999;
   pointer-events: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* Кастомный скроллбар для модалки завершения */
+.completion-modal::-webkit-scrollbar {
+  width: calc(var(--vw) * 8);
+}
+
+.completion-modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: calc(var(--vw) * 4);
+}
+
+.completion-modal::-webkit-scrollbar-thumb {
+  background: #FFDF59;
+  border-radius: calc(var(--vw) * 4);
+}
+
+.completion-modal::-webkit-scrollbar-thumb:hover {
+  background: #e6c84f;
 }
 
 .completion-modal__content {
@@ -309,8 +330,9 @@
 
   .completion-modal__panel-body--left .completion-modal__desc {
     /* Уменьшаем огромный отступ сверху, который ломал визуальный порядок */
-    margin-top: calc(var(--vw) * 40);
+    margin-top: calc(var(--vw) * 150);
     max-width: calc(var(--vw) * 224);
+    font-size: calc(var(--vw) * 16);
   }
 
   /* --- Мобильная верстка для второго слайда --- */
@@ -326,7 +348,7 @@
     flex-direction: column; 
     width: 100%;
     gap: calc(var(--vw) * 16);
-    margin-bottom: calc(var(--vw) * 36);
+    order: 2;
   }
   /* --- --- */
 
@@ -338,7 +360,7 @@
 
   .completion-modal__about-actions .action-button {
     width: 100%;
-    margin-top: calc(var(--vw) * 150); 
+    /* margin-top: calc(var(--vw) * 150);  */
   }
 
 
@@ -381,7 +403,17 @@
   .completion-modal__close {
     width: calc(var(--vw) * 38);
     height: calc(var(--vw) * 38);
+    background-size: 50%;
   }
 }
 
-
+@media (min-aspect-ratio: 2.3/1) {
+  .completion-modal {
+    align-items: flex-start;
+    padding: calc(var(--vw) * 50);
+  }
+  
+  .completion-modal__content {
+    margin-top: 0;
+  }
+}

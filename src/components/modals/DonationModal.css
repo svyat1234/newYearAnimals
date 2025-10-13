@@ -392,7 +392,15 @@
   }
 
   .donation-modal__period-active-background {
-    width: calc(var(--vw) * 120);
+    width: calc(var(--vw) * 110);
+  }
+
+  .donation-modal__period-active-background.monthly {
+    left: 0;
+  }
+  
+  .donation-modal__period-active-background.once {
+    left: calc(var(--vw) * 110);
   }
 
   .donation-modal__amounts {
