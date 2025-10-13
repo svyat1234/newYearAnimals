@@ -6,10 +6,11 @@ import vkSvg from '../../assets/images/vk.svg';
 
 const API_BASE_URL = 'http://127.0.0.1:8000';
 
-const UILayer = ({ answeredCount = 0 }) => {
+const UILayer = ({ answeredCount = 0, onOpenDonation }) => {
   const [isClueVisible, setIsClueVisible] = useState(false);
   const [content, setContent] = useState(null);
   const clueRef = useRef(null);
+
 
   useEffect(() => {
     fetch(`${API_BASE_URL}/api/site-content/`)
@@ -58,7 +59,13 @@ const UILayer = ({ answeredCount = 0 }) => {
           <img src={logoSvg} alt="Logo" />
         </a>
 
-        <a href="#" className="header__btn link">Помочь фонду</a>
+        <button 
+          type="button"
+          className="header__btn link" 
+          onClick={onOpenDonation}
+        >
+          Помочь фонду
+        </button>
       </header>
 
       {/* Promo */}
@@ -67,7 +74,7 @@ const UILayer = ({ answeredCount = 0 }) => {
         <p className="promo__text" dangerouslySetInnerHTML={{ __html: content ? content.promoDescription : '' }}></p>
         <div className="promo__btns">
           <button className="action-button">Читать статью</button>
-          <button className="action-button">Пройти тест</button>
+          <a href="#test-start" className="action-button">Пройти тест</a>
         </div>
 
         <div 

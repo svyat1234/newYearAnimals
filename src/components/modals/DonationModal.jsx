@@ -1,13 +1,82 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './DonationModal.css'
+import { donationConfig } from '../../data/donationConfig'
 
 const DonationModal = ({ isOpen = false, onClose }) => {
-  const [isMonthly, setIsMonthly] = useState(false)
-  const [selectedAmount, setSelectedAmount] = useState(null)
-  const [customAmount, setCustomAmount] = useState('')
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [agree, setAgree] = useState(false)
+  const [isMonthly, setIsMonthly] = useState(true) // опция на месяц (true), разово (false)
+  const [selectedAmount, setSelectedAmount] = useState(500) // сумма платежа, меняется в зависимости от того какую кнопку выбрал
+  const [customAmount, setCustomAmount] = useState('') // кастомная сумма, если выбрана такая 
+  const [name, setName] = useState('') // имя
+  const [email, setEmail] = useState('') // почта 
+  const [agree, setAgree] = useState(true) // галочка о согласии с  офертой
+  const [errors, setErrors] = useState({}) // валидация
+
+  const publicId = import.meta.env.VITE_CP_PUBLIC_ID || ''
+  const currency = 'RUB'
+  const amount = selectedAmount === 'custom' ? (Number(customAmount) || 0) : selectedAmount
+  const recurrent = isMonthly
+  const accountId = email.trim()
+  const description = 'Пожертвование'
+  const paymentData = { name: name.trim(), isMonthly: recurrent }
+
+  // Блокировка скролла body при открытии модала
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+
+    // Очистка при размонтировании компонента
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
+  // Валидация формы
+  const validateForm = () => {
+    const newErrors = {}
+    
+    if (!name.trim()) {
+      newErrors.name = 'Поле "Имя" обязательно для заполнения'
+    }
+    
+    if (!email.trim()) {
+      newErrors.email = 'Поле "Электронная почта" обязательно для заполнения'
+    } else if (!/\S+@\S+\.\S+/.test(email)) {
+      newErrors.email = 'Введите корректный email адрес'
+    }
+    
+    if (!agree) {
+      newErrors.agree = 'Необходимо согласиться с условиями'
+    }
+    
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
+
+  // Обработчик отправки формы
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    
+    if (validateForm()) {
+      console.log('Форма валидна, можно отправлять:', {
+        publicId,
+        currency,
+        amount,
+        description,
+        accountId,
+        recurrent,
+        data: paymentData,
+        isMonthly,
+        selectedAmount,
+        name,
+        email,
+        agree
+      })
+      // Здесь будет интеграция с CloudPayments
+    }
+  }
 
   if (!isOpen) return null
 
@@ -24,40 +93,105 @@ const DonationModal = ({ isOpen = false, onClose }) => {
         />
 
         {/* Здесь ваша вёрстка */}
-        <div className="donation-modal__body">
-          <h2>Помочь фонду</h2>
-          <span className="donation-modal__subtitle">Поддержите животных, которые подверглись опасности в зимний период</span>
-          <div className="donation-modal__period-buttons">
-            <button className="donation-modal__period-button">Ежемесячно</button>
-            <button className="donation-modal__period-button">Один раз</button>
-          </div>
-          <div className="donation-modal__amounts">
-            <button className="donation-modal__amount">500 ₽</button>
-            <button className="donation-modal__amount">1 500 ₽</button>
-            <button className="donation-modal__amount">3 000 ₽</button>
-            <button className="donation-modal__amount">5 000 ₽</button>
-            <button className="donation-modal__amount">10 000 ₽</button>
-            <button className="donation-modal__amount">Другая сумма</button>
-          </div>
+        <form className="donation-modal__form-wrapper" onSubmit={handleSubmit}>
+          <div className="donation-modal__body">
+            <div className="donation-modal__body-content">
+            <h2 className="donation-modal__title">Помочь фонду</h2>
+            <span className="donation-modal__subtitle">Поддержите животных, которые подверглись опасности в зимний период</span>
+            <div className="donation-modal__period-buttons">
+              <button 
+                type="button"
+                className={`donation-modal__period-button ${isMonthly ? 'active' : ''}`}
+                onClick={() => setIsMonthly(true)}
+              >
+                Ежемесячно
+              </button>
+              <button 
+                type="button"
+                className={`donation-modal__period-button ${!isMonthly ? 'active' : ''}`}
+                onClick={() => setIsMonthly(false)}
+              >
+                Один раз
+              </button>
 
-          <div className="donation-modal__form">
-            
-            <div className="donation-modal__inputs">
-              <input type="text" placeholder="Имя" />
-              <input type="email" placeholder="Email" />
+              <div className={`donation-modal__period-active-background ${isMonthly ? 'monthly' : 'once'}`}></div>
+            </div>
+            <div className="donation-modal__amounts">
+              {donationConfig.amounts.map((amount) => (
+                <button 
+                  key={amount.value}
+                  type="button" 
+                  className={`donation-modal__amount ${selectedAmount === amount.value ? 'donation-modal__amount--active' : ''}`}
+                  onClick={() => setSelectedAmount(amount.value)}
+                >
+                  {amount.label}
+                </button>
+              ))}
             </div>
 
-            <label className="donation-modal__agree">
-              <input type="checkbox" className="donation-modal__checkbox" />
-              <span className="donation-modal__checkbox-custom"></span>
-              <span className="donation-modal__agree-text">
-                Я согласен с условиями <a href="#" className="donation-modal__link">Оферты</a>
-              </span>
-            </label> 
-            
-            <button className="donation-modal__form-button">Помочь</button>
+            <span className="donation-modal__amount-desc">
+              {donationConfig.amounts.find(amount => amount.value === selectedAmount)?.description}
+            </span>
+
+            </div>
+            <div className="donation-modal__form">
+
+              <span className="donation-modal__form-title">Ваши данные</span>
+              
+              <div className="donation-modal__inputs">
+                <div className="donation-modal__input-wrapper">
+                  <input 
+                    type="text" 
+                    placeholder="Имя" 
+                    value={name}
+                    onChange={(e) => {
+                      setName(e.target.value)
+                      if (errors.name) setErrors({...errors, name: ''})
+                    }}
+                    className={errors.name ? 'error' : ''}
+                  />
+                  {errors.name && <span className="donation-modal__error">{errors.name}</span>}
+                </div>
+                <div className="donation-modal__input-wrapper">
+                  <input 
+                    type="email" 
+                    placeholder="Электронная почта" 
+                    value={email}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      if (errors.email) setErrors({...errors, email: ''})
+                    }}
+                    className={errors.email ? 'error' : ''}
+                  />
+                  {errors.email && <span className="donation-modal__error">{errors.email}</span>}
+                </div>
+              </div>
+
+              <div className="donation-modal__agree-wrapper">
+                <label className="donation-modal__agree">
+                  <input 
+                    type="checkbox" 
+                    className="donation-modal__checkbox" 
+                    checked={agree}
+                    onChange={(e) => {
+                      setAgree(e.target.checked)
+                      if (errors.agree) setErrors({...errors, agree: ''})
+                    }}
+                  />
+                  <span className={`donation-modal__checkbox-custom ${agree ? 'checked' : ''}`}></span>
+                  <span className="donation-modal__agree-text">
+                    Я согласен с условиями <a href="#" className="donation-modal__link">Оферты</a>
+                  </span>
+                </label>
+                {errors.agree && <span className="donation-modal__error">{errors.agree}</span>}
+              </div> 
+              
+              <div className="donation-modal__form-button-wrapper">
+                <button type="submit" className="donation-modal__form-button action-button">Помочь</button>
+              </div>
+            </div>
           </div>
-        </div>
+        </form>
 
       </div>
     </div>

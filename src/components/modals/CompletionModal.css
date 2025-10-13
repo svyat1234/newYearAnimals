@@ -39,7 +39,7 @@
   width: calc(var(--vw) * 72);
   height: calc(var(--vw) * 72);
   background: url('../../assets/images/modal-close.svg') no-repeat center;
-  /* backgroundColor задается через inline стили для каждой модалки */
+  background-color: transparent;
   border: none;
   border-radius: 50%;
   cursor: pointer;

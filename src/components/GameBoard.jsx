@@ -17,6 +17,7 @@ const GameBoard = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isCompletionOpen, setIsCompletionOpen] = useState(false);
   const [finalResult, setFinalResult] = useState(null);
+  const [isDonationOpen, setIsDonationOpen] = useState(false);
   const submissionTriggered = useRef(false);
 
   // Fetch total questions count on mount for comparison
@@ -104,7 +105,10 @@ const GameBoard = () => {
       <SnowLayer />
 
       {/* UI элементы - заголовки, кнопки */}
-      <UILayer answeredCount={answeredCount} />
+      <UILayer 
+        answeredCount={answeredCount} 
+        onOpenDonation={() => setIsDonationOpen(true)}
+      />
       
       {/* Модальные окна */}
       <ModalSystem 
@@ -116,6 +120,9 @@ const GameBoard = () => {
         onCloseCompletion={() => setIsCompletionOpen(false)}
         questionStates={questionStates}
         onAnswered={handleAnswered}
+        isDonationOpen={isDonationOpen}
+        onCloseDonation={() => setIsDonationOpen(false)}
+        onOpenDonation={() => setIsDonationOpen(true)}
       />
     </div>
   );

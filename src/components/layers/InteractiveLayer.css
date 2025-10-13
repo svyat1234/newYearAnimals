@@ -84,16 +84,16 @@
  
 /* Вариант внешнего вида для второй кнопки */
 
-.point-btn.variant-2 {
+.point-btn.point-btn--completed {
   width: calc(var(--vw) * 146);
   height: calc(var(--vw) * 135);
 }
 
-.point-btn.variant-2::before {
+.point-btn.point-btn--completed::before {
   display: none;
 }
 
-.point-btn.variant-2::after {
+.point-btn.point-btn--completed::after {
   width: 100%;
   height: 100%;
   border-radius: 0;
@@ -101,9 +101,6 @@
   background: url('../../assets/images/star-btn.svg') no-repeat center / cover;
 }
 
-.point-btn.variant-2.point-btn--completed::after {
-  background: url('../../assets/images/star-btn-complited.svg') no-repeat center / cover;
-}
 
 
 @media (max-width: 1024px) {
@@ -123,7 +120,7 @@
     top: calc(var(--vw) * 7);
   }
 
-  .point-btn.variant-2 {
+  .point-btn.point-btn--completed {
     width: calc(var(--vw) * 82);
     height: calc(var(--vw) * 76);
   }

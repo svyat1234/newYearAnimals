@@ -15,7 +15,10 @@ const ModalSystem = ({
   onCloseCompletion,
   questionStates = {}, 
   onAnswered,
-  finalResult
+  finalResult,
+  isDonationOpen = false,
+  onCloseDonation,
+  onOpenDonation
 }) => {
   const [questions, setQuestions] = useState([]);
   const [userCompletionResult, setUserCompletionResult] = useState(null);
@@ -44,7 +47,7 @@ const ModalSystem = ({
   
   // Блокируем прокрутку сайта, когда открыта модалка
   useEffect(() => {
-    if (isQuestionOpen || isCompletionOpen) {
+    if (isQuestionOpen || isCompletionOpen || isDonationOpen) {
       const prevBodyOverflow = document.body.style.overflow
       document.body.dataset.prevOverflow = prevBodyOverflow
       document.body.style.overflow = 'hidden'
@@ -53,7 +56,7 @@ const ModalSystem = ({
         delete document.body.dataset.prevOverflow
       }
     }
-  }, [isQuestionOpen, isCompletionOpen])
+  }, [isQuestionOpen, isCompletionOpen, isDonationOpen])
 
   const currentQuestionData = questions.find(q => q.questionNumber === currentQuestionId);
 
@@ -67,6 +70,7 @@ const ModalSystem = ({
           selectedAnswer={stateForCurrent.selectedAnswer}
           onAnswer={(questionId, choiceId, selectedIndex) => onAnswered && onAnswered(questionId, choiceId, selectedIndex)}
           onClose={onCloseQuestion}
+          onOpenDonation={onOpenDonation}
         />
       )}
       <CompletionModal 
@@ -74,8 +78,10 @@ const ModalSystem = ({
         onClose={onCloseCompletion}
         completionData={userCompletionResult}
       />
-      {/** Temporary render of DonationModal for layout work via portal to escape stacking contexts */}
-      {createPortal(<DonationModal isOpen={true} onClose={() => {}} />, document.body)}
+      <DonationModal 
+        isOpen={isDonationOpen} 
+        onClose={onCloseDonation} 
+      />
     </div>
   )
 }

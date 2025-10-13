@@ -68,7 +68,6 @@ const CompletionModal = ({ isOpen = false, onClose, completionData }) => {
                   className="completion-modal__close" 
                   aria-label="Закрыть" 
                   onMouseDown={onClose}
-                  style={{ backgroundColor: closeButtonColor }}
                 />
 
                 <h2 className="completion-modal__title-line">
@@ -101,7 +100,6 @@ const CompletionModal = ({ isOpen = false, onClose, completionData }) => {
                   className="completion-modal__close" 
                   aria-label="Закрыть" 
                   onMouseDown={onClose}
-                  style={{ backgroundColor: closeButtonColor }}
                 />
 
                 <p

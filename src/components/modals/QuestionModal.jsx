@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import './QuestionModal.css'
 import { useIsMobile } from '../../hooks/useIsMobile'
 
-const QuestionModal = ({ isOpen = true, onClose, questionData, answered: answeredProp = false, selectedAnswer: selectedAnswerProp = null, onAnswer }) => {
+const QuestionModal = ({ isOpen = true, onClose, questionData, answered: answeredProp = false, selectedAnswer: selectedAnswerProp = null, onAnswer, onOpenDonation }) => {
   const [selectedAnswer, setSelectedAnswer] = useState(selectedAnswerProp)
   const [answered, setAnswered] = useState(answeredProp)
 
@@ -89,7 +89,16 @@ const QuestionModal = ({ isOpen = true, onClose, questionData, answered: answere
 
                 <div className="question-modal__test-btns">
 
-                    <a href="" className={`link ${answered ? '' : 'link--hidden'}`}>Помочь фонду</a>
+                    <button 
+                      type="button"
+                      className={`link ${answered ? '' : 'link--hidden'}`}
+                      onClick={() => {
+                        if (onClose) onClose(); // Закрываем QuestionModal
+                        if (onOpenDonation) onOpenDonation(); // Открываем DonationModal
+                      }}
+                    >
+                      Помочь фонду
+                    </button>
 
                     <button 
                         className="action-button"

@@ -11,7 +11,8 @@ const InteractiveLayer = ({ onOpenQuestion, answeredMap = {} }) => {
         <button
           key={p.id}
           type="button"
-          className={`point-btn ${p.variant || 'default'} ${p.id === 2 ? 'variant-2' : ''} ${answeredMap[p.id]?.answered ? 'point-btn--completed' : ''}`}
+          id={p.id === 1 ? 'test-start' : undefined}
+          className={`point-btn ${p.variant || 'default'} ${answeredMap[p.id]?.answered ? 'point-btn--completed' : ''}`}
           style={{
             position: 'absolute',
             top: `calc(${(isMobile ? (p.mobile?.top ?? p.top) : p.top) / (isMobile ? 3172 : 5541) * 100}%)`,
